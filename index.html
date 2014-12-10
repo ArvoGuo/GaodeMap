@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>多边形绘制</title>
+	</head>
+	<style>
+	body{
+		margin:0;
+		padding:0;
+	}
+	#iCenter{
+		width: 1000px;
+		height: 500px;
+	}
+	#add{
+		position: fixed;
+		right: 100px;
+		top: 50px;
+	}
+	#list{
+		position: fixed;
+		right: 100px;
+		top:70px;
+		display: block;
+
+		overflow: hidden;
+		margin:0;
+		padding:0;
+	}
+	li{
+		background-color: #ccc;
+		cursor: pointer;
+		padding:10px;
+		margin:2px;
+	}
+	</style>
+	<body >
+		<div>
+			<div id="iCenter"></div>
+		</div>
+		<button id="add">点击生成一个矩形</button>
+		<ul id="list">
+			<li>xx</li>
+		</ul>
+		<div id="li-demo" style="display:none">
+      <li>
+        <div class="color" style="width:50px;height:50px;display:inline-block;"></div>
+        <div class="information" style="display:inline-block;">
+          <h4>起送价：</h4>
+          <input class="price" type="text"/><span>&nbsp;元</span>
+          <span class="delete">&times;</span>
+        </div>
+      </li>
+    </div>
+	</body>
+	<script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=a48480140567ca23414873c1b56ebf53"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="js/jquery.gaodeMap.js"></script>
+	<script>
+		$(document).ready(function(){
+			window.map = $.Mapor({
+				mapAreaId: 'iCenter',
+				addBtnId: 'add',
+				ulAreaId: 'list',
+				center: {
+					lng: 121.38064,//经度
+					lat: 31.231572 //纬度
+				}
+			});
+			data = {"center":{"lat":"31.231572","lng":"121.38064"},"areas":[{"id":"205a95a4-8049-11e4-9988-c81f66c0e53b","price":10,"path":[{"lng":121.378938,"lat":31.231766},{"lng":121.379474,"lat":31.231766},{"lng":121.379474,"lat":31.231307},{"lng":121.378938,"lat":31.231307}]},{"id":"4f0035e2-804b-11e4-9f98-90b11c572918","price":2,"path":[{"lng":121.379818,"lat":31.233055},{"lng":121.380354,"lat":31.233055},{"lng":121.381191,"lat":31.231849},{"lng":121.378128,"lat":31.232275}]},{"id":"4f003be6-804b-11e4-9f98-90b11c572918","price":220,"path":[{"lng":121.377774,"lat":31.231252},{"lng":121.378294,"lat":31.231752},{"lng":121.379217,"lat":31.231849},{"lng":121.37993,"lat":31.230766},{"lng":121.377774,"lat":31.230794}]}]}
+			map.repaintMap(data)
+		})
+	</script>
+</html>
