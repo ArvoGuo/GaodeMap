@@ -5,6 +5,105 @@
 		<title>多边形绘制</title>
 	</head>
 	<style>
+	.tooltip {
+  position: relative;
+  z-index: 1000;
+  display: block;
+  visibility: visible;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.9; }
+  /* line 10, /Users/Arvo/github/melody/client/styles/component/tooltip */
+  .tooltip:in {
+    opacity: 0.9; }
+  /* line 12, /Users/Arvo/github/melody/client/styles/component/tooltip */
+  .tooltip.top {
+    margin-top: -3px;
+    padding: 5px 0; }
+  /* line 15, /Users/Arvo/github/melody/client/styles/component/tooltip */
+  .tooltip.right {
+    margin-left: 3px;
+    padding: 0 5px; }
+  /* line 18, /Users/Arvo/github/melody/client/styles/component/tooltip */
+  .tooltip.bottom {
+    margin-top: 3px;
+    padding: 5px 0; }
+  /* line 21, /Users/Arvo/github/melody/client/styles/component/tooltip */
+  .tooltip.left {
+    margin-left: -3px;
+    padding: 0 5px; }
+
+/* line 25, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 2px; }
+
+/* line 34, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid; }
+
+/* line 42, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: rgba(0, 0, 0, 0.8); }
+/* line 48, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.top-left .tooltip-arrow {
+  bottom: 0;
+  left: 5px;
+  border-width: 5px 5px 0;
+  border-top-color: rgba(0, 0, 0, 0.8); }
+/* line 53, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.top-right .tooltip-arrow {
+  bottom: 0;
+  right: 5px;
+  border-width: 5px 5px 0;
+  border-top-color: rgba(0, 0, 0, 0.8); }
+/* line 58, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-width: 5px 5px 5px 0;
+  border-right-color: rgba(0, 0, 0, 0.8); }
+/* line 64, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.left .tooltip-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-width: 5px 0 5px 5px;
+  border-left-color: rgba(0, 0, 0, 0.8); }
+/* line 70, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: rgba(0, 0, 0, 0.8); }
+/* line 76, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.bottom-left .tooltip-arrow {
+  top: 0;
+  left: 5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: rgba(0, 0, 0, 0.8); }
+/* line 81, /Users/Arvo/github/melody/client/styles/component/tooltip */
+.tooltip.bottom-right .tooltip-arrow {
+  top: 0;
+  right: 5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: rgba(0, 0, 0, 0.8); }
+
 	body{
 		margin:0;
 		padding:0;
@@ -17,6 +116,12 @@
 		position: fixed;
 		right: 100px;
 		top: 50px;
+	}
+	#submit{
+		position: fixed;
+		right: 100px;
+		bottom: 100px;
+		z-index: 10;
 	}
 	#list{
 		position: fixed;
@@ -34,15 +139,18 @@
 		padding:10px;
 		margin:2px;
 	}
+
 	</style>
 	<body >
 		<div>
 			<div id="iCenter"></div>
 		</div>
 		<button id="add">点击生成一个矩形</button>
+		<button id="submit" onclick="console.log(map.outPutData())"> 确定</button>
 		<ul id="list">
 			<li>xx</li>
 		</ul>
+
 		<div id="li-demo" style="display:none">
       <li>
         <div class="color" style="width:50px;height:50px;display:inline-block;"></div>
